@@ -4,7 +4,6 @@
 """
 
 from datetime import datetime
-import sys
 
 
 def print_header() -> None:
@@ -32,11 +31,7 @@ def main() -> None:
     print_header()
     print_status()
     print_icon_help()
-    if sys.stdin.isatty():
-        print("\nהבדיקה הושלמה. לחץ Enter לסגירה...")
-        input()
-    else:
-        print("\nהבדיקה הושלמה.")
+    print("\nהבדיקה הושלמה.")
 
 
 if __name__ == "__main__":
