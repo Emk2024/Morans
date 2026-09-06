@@ -17,7 +17,12 @@ def print_header() -> None:
 
 def print_status() -> None:
     env_root = os.environ.get("MORANS_PROJECT_ROOT")
-    root = Path(env_root).expanduser().resolve() if env_root else Path(__file__).resolve().parent
+    script_dir = Path(__file__).resolve().parent
+    if env_root:
+        root_candidate = Path(env_root).expanduser()
+        root = root_candidate.resolve() if root_candidate.is_absolute() else (script_dir / root_candidate).resolve()
+    else:
+        root = script_dir
     big_clock_exists = (root / "big_clock.py").exists()
     time_tracker_exists = (root / "time_tracker.py").exists()
     ios_exists = (root / "MedicalAI-iOS" / "MedicalAIApp.swift").exists()
